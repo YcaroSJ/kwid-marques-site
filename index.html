@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kwid Marques — Arquitetura</title>
+<meta name="description" content="Kwid Marques, arquiteto. Portfólio em construção.">
+<link rel="icon" href="logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400;1,6..96,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111;--ink:#f2f2f2;--serif:'Bodoni Moda',Didot,Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:50;width:min(100%,76vw);min-width:340px;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;background:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:300;text-shadow:0 0 12px #0008}
+nav ul{display:flex;gap:clamp(16px,3vw,32px);list-style:none;padding:0}
+nav a{opacity:.7;transition:opacity .2s}nav a:hover,nav .brand{opacity:1}
+.brand{font-weight:400}
+
+/* HERO: photo → architectural lines → cut-out, separated in real 3D depth */
+.hero{position:relative;display:grid;place-items:start center;overflow:hidden;background:#1a1a1a}
+.stage{position:relative;width:min(100vw,calc(100svh*16/9));aspect-ratio:16/9;container-type:size;overflow:hidden;perspective:1200px;background:#1a1a1a;animation:fade 1.6s ease both}
+.rig{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.rig>*{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none}
+/* each depth is scaled back so the layers still line up at rest */
+.bg{transform:translateZ(-40px) scale(1.05)}
+.lines{transform:translateZ(-10px) scale(1.008)}
+.cut{transform:translateZ(30px) scale(.975)}
+
+.say{display:flex;align-items:flex-end;gap:1.2cqw;padding:0 0 8cqh 30cqw;transform:translateZ(60px) scale(.95);font:300 1.55cqw/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;text-shadow:0 0 1cqw #000a;animation:fade 2s 1.4s both}
+.say::before{content:'';width:6cqw;height:1px;background:#fff;margin-bottom:.7cqw}
+.say span{transition:opacity .7s,transform .7s}.say span.out{opacity:0;transform:translateY(.6cqw)}
+.lines path{fill:none;stroke:#fff;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:.38;animation:draw 18s ease-in-out infinite}
+@keyframes draw{0%{stroke-dashoffset:1}28%,55%{stroke-dashoffset:0}85%,100%{stroke-dashoffset:-1}}
+@keyframes fade{from{opacity:0}}
+
+section{padding:clamp(80px,14vw,200px) clamp(16px,3vw,40px)}
+.lab{text-transform:uppercase;letter-spacing:.14em;font-size:11px;opacity:.55;margin-bottom:2.5rem}
+
+
+.contato h2{font:400 clamp(52px,13vw,230px)/.9 var(--serif);letter-spacing:-.03em}
+.contato h2 em{opacity:.5}
+.links{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:3rem;text-transform:uppercase;letter-spacing:.12em;font-size:12px}
+.links a{border-bottom:1px solid #fff6;padding-bottom:3px;transition:border-color .2s}.links a:hover{border-color:#fff}
+footer{display:flex;justify-content:space-between;padding:24px clamp(16px,3vw,40px);border-top:1px solid #ffffff1f;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.55}
+
+.rv{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.8,.2,1)}
+.rv.on{opacity:1;transform:none}
+
+@media (max-width:760px){
+  nav{min-width:0;width:100%;padding:18px 16px}nav ul{gap:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+.lines path{stroke-dashoffset:0}.rv{opacity:1;transform:none}
+}
+
+/* INTRO */
+#intro{position:fixed;inset:0;z-index:100;background:#111;display:grid;place-items:center;transition:opacity .9s ease,visibility .9s;cursor:pointer}
+#intro.done{opacity:0;visibility:hidden}
+html.lock{overflow:hidden}
+.wm{position:relative;width:min(30vw,320px);aspect-ratio:430.812/46}
+.wm svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.wm .w{position:absolute;inset:0}
+.wm .w.l{clip-path:inset(-10% 52.7% -10% -20%)}.wm .w.r{clip-path:inset(-10% -20% -10% 52%)}
+.wm .w svg{animation:out 1.5s cubic-bezier(.7,0,.2,1) 1.2s both}
+.wm .w.l svg{--x:50%}.wm .w.r svg{--x:-50%}
+.wm .sym{animation:pop 1s cubic-bezier(.2,.8,.2,1) .2s both}
+@keyframes out{from{transform:translateX(var(--x))}to{transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6)}}
+nav .brand{letter-spacing:.34em;font-weight:400}
+.about{display:grid;grid-template-columns:5fr 7fr;gap:clamp(24px,6vw,96px);align-items:end}
+.about figure{aspect-ratio:4/5;overflow:hidden;background:#1a1a1a}
+.about img,.proj img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05)}
+.about p.txt{margin-top:2rem;max-width:34em;font-size:16px;font-weight:300;opacity:.75}
+.about .manifesto-p{font:400 clamp(34px,5vw,84px)/1 var(--serif);letter-spacing:-.03em}
+.about em{font-style:italic;opacity:.5}
+.projs{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(40px,6vw,90px) clamp(12px,1.6vw,24px)}
+.proj{display:block}
+.proj .ph{overflow:hidden;background:#1a1a1a;aspect-ratio:var(--r,4/3)}
+.proj img{transition:transform 1.2s cubic-bezier(.2,.8,.2,1),filter .6s}
+.proj:hover img{transform:scale(1.05);filter:grayscale(1) contrast(1.1) brightness(1.1)}
+.proj figcaption{display:flex;justify-content:space-between;gap:16px;padding-top:14px;align-items:baseline}
+.proj h3{font:400 clamp(22px,2.4vw,36px)/1.1 var(--serif);letter-spacing:-.02em}
+.proj small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.55;white-space:nowrap}
+.p1{grid-column:1/8}.p2{grid-column:8/13;--r:3/4;margin-top:8vw}.p3{grid-column:1/6;--r:3/4}.p4{grid-column:6/13;margin-top:10vw}.p5{grid-column:1/8}.p6{grid-column:8/13;--r:3/4;margin-top:6vw}
+.note{margin-top:3rem;font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.4}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,4vw,64px)}
+.steps>div{border-top:1px solid #ffffff33;padding-top:20px}
+.steps b{font:400 clamp(40px,5vw,72px)/1 var(--serif);display:block;margin-bottom:.6em}
+.steps h4{font:400 18px var(--sans);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6em}
+.steps p{font-weight:300;opacity:.65;max-width:26em}
+@media (max-width:760px){.about,.steps{grid-template-columns:1fr}.projs>*{grid-column:1/-1!important;margin-top:0!important}}
+@media (max-width:760px){
+  .stage{width:100vw;height:min(88svh,150vw);aspect-ratio:auto}
+  .bg,.cut{object-fit:cover;object-position:53% 50%}
+  .say{padding:0 0 7cqh 8cqw;font-size:3.1cqw;letter-spacing:.28em}
+  .say::before{width:8cqw;margin-bottom:1.3cqw}
+  nav{padding:16px 16px;gap:12px;font-size:10px;letter-spacing:.16em}
+  nav ul{gap:12px}
+  section{padding-block:72px}
+  .wm{width:52vw}
+}
+@media (prefers-reduced-motion:reduce){#intro{display:none}}
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true">
+  <div class="wm">
+    <div class="w l"><svg viewBox="-12 -4.8 430.812 46"><text x="182" y="28" text-anchor="end" fill="#E6E2DC" font-family="Jost,sans-serif" font-weight="300" font-size="28" letter-spacing="7">KWID</text></svg></div>
+    <div class="w r"><svg viewBox="-12 -4.8 430.812 46"><text x="224" y="28" text-anchor="start" fill="#E6E2DC" font-family="Jost,sans-serif" font-weight="300" font-size="28" letter-spacing="7">MARQUES</text></svg></div>
+    <svg class="sym" viewBox="-12 -4.8 430.812 46"><g transform="translate(190,2)" fill="none" stroke="#E6E2DC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 L6 14 Q7.500 11 11 11 H25 Q28.500 11 30 14 L34 26 V32 H2 Z"/><circle cx="10" cy="32" r="3.500" fill="#111"/><circle cx="26" cy="32" r="3.500" fill="#111"/><path d="M8 17 H28"/></g></svg>
+  </div>
+</div>
+
+<nav>
+  <a class="brand" href="#top" aria-label="Kwid Marques">KWID MARQUES</a>
+  <ul><li><a href="#projetos">Projetos</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#contato">Contato</a></li></ul>
+</nav>
+
+<header class="hero" id="top">
+  <div class="stage" id="stage">
+    <div class="rig" id="rig">
+      <img class="bg" src="kwid-bg.jpg" alt="Kwid Marques, arquiteto" fetchpriority="high">
+      <svg class="lines" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <!-- perspective rays converging behind it -->
+        <path pathLength="1" d="M0 900 L800 380" style="animation-delay:0s"/>
+        <path pathLength="1" d="M1600 60 L800 380" style="animation-delay:-6s"/>
+        <path pathLength="1" d="M0 120 L800 380" style="animation-delay:-11s"/>
+        <path pathLength="1" d="M1600 900 L800 380" style="animation-delay:-15s"/>
+        <!-- floor / horizon -->
+        <path pathLength="1" d="M0 640 H1600" style="animation-delay:-3s"/>
+        <!-- verticals -->
+        <path pathLength="1" d="M300 0 V900" style="animation-delay:-8s"/>
+        <path pathLength="1" d="M1260 900 V0" style="animation-delay:-13s"/>
+        <!-- wireframe cube, left -->
+        <path pathLength="1" d="M150 400 L270 330 L390 400 L390 540 L270 610 L150 540 Z M270 470 V610 M270 470 L150 400 M270 470 L390 400" style="animation-delay:-2s"/>
+        <!-- wireframe cube, right -->
+        <path pathLength="1" d="M1240 180 L1330 128 L1420 180 L1420 284 L1330 336 L1240 284 Z M1330 232 V336 M1330 232 L1240 180 M1330 232 L1420 180" style="animation-delay:-9s"/>
+      </svg>
+      <img class="cut" src="kwid-cutout.png" alt="" aria-hidden="true">
+      <p class="say"><span id="say">Arquitetura que se vive</span></p>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="lab rv">Sobre</div>
+  <div class="about">
+    <figure class="rv"><img src="sobre.jpg" alt="Retrato de Kwid Marques, arquiteto" loading="lazy"></figure>
+    <div class="rv">
+      <p class="manifesto-p">Desenho espaços que se <em>vivem</em> antes de se verem.</p>
+      <p class="txt">Cada projeto começa na escuta: do terreno, da luz, das pessoas que vão habitá-lo. O traço vem depois, e a obra só termina quando o espaço faz sentido para quem vive nele.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="lab rv">Projetos</div>
+  <div class="projs">
+    <a class="proj p1 rv" href="#contato"><div class="ph"><img src="img/casa-jardim.jpg" alt="" loading="lazy"></div><figcaption><h3>Casa do Jardim</h3><small>Residencial · 2025</small></figcaption></a>
+    <a class="proj p2 rv" href="#contato"><div class="ph"><img src="img/interior-sala.jpg" alt="" loading="lazy"></div><figcaption><h3>Sala Contínua</h3><small>Interiores · 2025</small></figcaption></a>
+    <a class="proj p3 rv" href="#contato"><div class="ph"><img src="img/casa-piscina.jpg" alt="" loading="lazy"></div><figcaption><h3>Residência Horizonte</h3><small>Residencial · 2024</small></figcaption></a>
+    <a class="proj p4 rv" href="#contato"><div class="ph"><img src="img/casa-madeira.jpg" alt="" loading="lazy"></div><figcaption><h3>Casa Ripado</h3><small>Residencial · 2024</small></figcaption></a>
+    <a class="proj p5 rv" href="#contato"><div class="ph"><img src="img/pavilhao.jpg" alt="" loading="lazy"></div><figcaption><h3>Pavilhão Prisma</h3><small>Cultural · 2023</small></figcaption></a>
+    <a class="proj p6 rv" href="#contato"><div class="ph"><img src="img/torres.jpg" alt="" loading="lazy"></div><figcaption><h3>Torre Vértice</h3><small>Comercial · 2023</small></figcaption></a>
+  </div>
+  <p class="note">Projetos e imagens ilustrativos (Unsplash). Portfólio real em breve.</p>
+</section>
+
+<section id="processo">
+  <div class="lab rv">Processo</div>
+  <div class="steps">
+    <div class="rv"><b>01</b><h4>Escuta</h4><p>Entender o terreno, a rotina e o desejo de quem vai viver o espaço.</p></div>
+    <div class="rv"><b>02</b><h4>Projeto</h4><p>Do primeiro traço ao executivo: forma, luz, materiais e detalhes.</p></div>
+    <div class="rv"><b>03</b><h4>Obra</h4><p>Acompanhamento próximo para que o desenhado vire construído.</p></div>
+  </div>
+</section>
+
+<section class="contato" id="contato">
+  <div class="lab rv">Contato</div>
+  <h2 class="rv">Vamos<br><em>desenhar?</em></h2>
+  <div class="links rv"><a href="#">Instagram</a><a href="#">E-mail</a><a href="#">WhatsApp</a></div>
+</section>
+
+<footer><span>KWID MARQUES</span><span>© 2026</span></footer>
+
+<script>
+// opening: symbol alone, then the name slides out from behind it
+(()=>{
+  const el=document.getElementById('intro');
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.remove();return}
+  document.documentElement.classList.add('lock');
+  const end=()=>{el.classList.add('done');document.documentElement.classList.remove('lock');setTimeout(()=>el.remove(),1000)};
+  setTimeout(end,4600);el.addEventListener('click',end);
+})();
+(()=>{
+  const el=document.getElementById('say'),w=['Arquitetura que se vive','Luz, forma e silêncio','Espaços com alma','Do traço à obra'];let i=0;
+  setInterval(()=>{el.classList.add('out');setTimeout(()=>{el.textContent=w[i=++i%w.length];el.classList.remove('out')},700)},3800);
+})();
+// 3D tilt: follows the pointer; drifts slowly on its own when idle (touch / no mouse)
+(()=>{
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  const rig=document.getElementById('rig'),stage=document.getElementById('stage');
+  let tx=0,ty=0,x=0,y=0,t0=performance.now(),last=-1e9;
+  addEventListener('pointermove',e=>{
+    const r=stage.getBoundingClientRect();
+    tx=Math.max(-1,Math.min(1,(e.clientX-r.left)/r.width*2-1));
+    ty=Math.max(-1,Math.min(1,(e.clientY-r.top)/r.height*2-1));
+    last=performance.now();
+  });
+  (function f(now){
+    if(now-last>3000){const s=(now-t0)/1000;tx=Math.sin(s*.45);ty=Math.cos(s*.31)*.6}
+    x+=(tx-x)*.05;y+=(ty-y)*.05;
+    rig.style.transform=`rotateY(${x*1.6}deg) rotateX(${-y*1.1}deg)`;
+    requestAnimationFrame(f);
+  })(t0);
+})();
+
+const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&(x.target.classList.add('on'),io.unobserve(x.target))),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
