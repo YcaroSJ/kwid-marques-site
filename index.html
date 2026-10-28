@@ -63,12 +63,12 @@ footer{display:flex;justify-content:space-between;padding:24px clamp(16px,3vw,40
 #intro{position:fixed;inset:0;z-index:100;background:#111;display:grid;place-items:center;transition:opacity .9s ease,visibility .9s;cursor:pointer}
 #intro.done{opacity:0;visibility:hidden}
 html.lock{overflow:hidden}
-.wm{position:relative;width:min(30vw,320px);aspect-ratio:430.812/46}
+.wm{position:relative;width:min(40vw,460px);aspect-ratio:560/60}
 .wm svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .wm .w{position:absolute;inset:0}
 .wm .w.l{clip-path:inset(-10% 52.7% -10% -20%)}.wm .w.r{clip-path:inset(-10% -20% -10% 52%)}
 .wm .w svg{animation:out 1.5s cubic-bezier(.7,0,.2,1) 1.2s both}
-.wm .w.l svg{--x:50%}.wm .w.r svg{--x:-50%}
+.wm .w.l svg{--x:32%}.wm .w.r svg{--x:-48%}
 .wm .sym{animation:pop 1s cubic-bezier(.2,.8,.2,1) .2s both}
 @keyframes out{from{transform:translateX(var(--x))}to{transform:none}}
 @keyframes pop{from{opacity:0;transform:scale(.6)}}
@@ -112,9 +112,9 @@ nav .brand{letter-spacing:.34em;font-weight:400}
 
 <div id="intro" aria-hidden="true">
   <div class="wm">
-    <div class="w l"><svg viewBox="-12 -4.8 430.812 46"><text x="182" y="28" text-anchor="end" fill="#E6E2DC" font-family="Jost,sans-serif" font-weight="300" font-size="28" letter-spacing="7">KWID</text></svg></div>
-    <div class="w r"><svg viewBox="-12 -4.8 430.812 46"><text x="224" y="28" text-anchor="start" fill="#E6E2DC" font-family="Jost,sans-serif" font-weight="300" font-size="28" letter-spacing="7">MARQUES</text></svg></div>
-    <svg class="sym" viewBox="-12 -4.8 430.812 46"><g transform="translate(190,2)" fill="none" stroke="#E6E2DC" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 L6 14 Q7.500 11 11 11 H25 Q28.500 11 30 14 L34 26 V32 H2 Z"/><circle cx="10" cy="32" r="3.500" fill="#111"/><circle cx="26" cy="32" r="3.500" fill="#111"/><path d="M8 17 H28"/></g></svg>
+    <div class="w l"><svg viewBox="0 0 560 60"><text x="245" y="41" text-anchor="end" fill="#E6E2DC" font-family="Jost,sans-serif" font-weight="300" font-size="40" letter-spacing="9">KWID</text></svg></div>
+    <div class="w r"><svg viewBox="0 0 560 60"><text x="315" y="41" text-anchor="start" fill="#E6E2DC" font-family="Jost,sans-serif" font-weight="300" font-size="40" letter-spacing="9">MARQUES</text></svg></div>
+    <svg class="sym" viewBox="0 0 560 60"><rect x="252" y="0" width="56" height="60" fill="#111"/><g transform="translate(262,14)" fill="none" stroke="#E6E2DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 17 L5 6 Q6 3 9 3 H27 Q30 3 31 6 L35 17 V21 H1 Z"/><circle cx="9" cy="21" r="4" fill="#111"/><circle cx="27" cy="21" r="4" fill="#111"/><path d="M8 9 H28"/></g></svg>
   </div>
 </div>
 
